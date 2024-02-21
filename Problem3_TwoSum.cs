@@ -4,6 +4,11 @@ public static class Problem3_TwoSum
 {
     public static int[] TwoSum(int[] nums, int target)
     {
+        if (nums.Length == 2)
+        {
+            return [0, 1];
+        }
+
         Dictionary<int, int> values = [];
         for (int i = 0; i < nums.Length; ++i)
         {
@@ -14,6 +19,7 @@ public static class Problem3_TwoSum
 
             values.TryAdd(nums[i], i);
         }
-        return [0, 0];
+
+        throw new Exception("No solution found!");
     }
 }
