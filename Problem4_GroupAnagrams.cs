@@ -1,66 +1,44 @@
-﻿namespace LeetCodeProblems;
+﻿using System.Text;
+
+namespace LeetCodeProblems;
 
 public static class Problem4_GroupAnagrams
 {
     public static IList<IList<string>> GroupAnagrams(string[] strs)
     {
-        IList<IList<string>> groupedAnagrams = [];
+        Dictionary<string, List<string>> anagramsMap = [];
 
         foreach (string word in strs)
         {
-            if (groupedAnagrams.Any(x => x.Any(y => y.Equals(word, StringComparison.OrdinalIgnoreCase))))
+            int[] alphabetsCount = new int[26];
+            foreach (char alphabet in word)
             {
-                continue;
+                ++alphabetsCount[(int)alphabet - (int)'a'];
             }
 
-            IList<string> anagrams = [];
-
-            Dictionary<char, int> characterMap = [];
-            for (int i = 0; i < word.Length; ++i)
+            StringBuilder keyBuilder = new();
+            foreach (int count in alphabetsCount)
             {
-                if (characterMap.TryGetValue(word[i], out int _))
-                {
-                    ++characterMap[word[i]];
-                }
-                else
-                {
-                    characterMap.Add(word[i], 1);
-                }
+                keyBuilder.Append('\'').Append(count).Append('\'');
             }
 
-            foreach (string nextWord in strs)
+            string key = keyBuilder.ToString();
+            if (anagramsMap.TryGetValue(key, out var anagrams))
             {
-                if (word == "" && nextWord.Length > 0)
-                {
-                    continue;
-                }
-
-                Dictionary<char, int> characterMapCopied = new(characterMap);
-                for (int i = 0; i < nextWord.Length; ++i)
-                {
-                    if (characterMapCopied.TryGetValue(nextWord[i], out int count))
-                    {
-                        --count;
-                        if (count == 0)
-                        {
-                            characterMapCopied.Remove(nextWord[i]);
-                        }
-                        else
-                        {
-                            characterMapCopied[nextWord[i]] = count;
-                        }
-                    }
-                }
-
-                if (characterMapCopied.Count == 0 && word.Length == nextWord.Length)
-                {
-                    anagrams.Add(nextWord);
-                }
+                anagrams.Add(word);
             }
-
-            groupedAnagrams.Add(anagrams);
+            else
+            {
+                anagramsMap.Add(key, [word]);
+            }
         }
 
-        return groupedAnagrams;
+        IList<IList<string>> result = [];
+        foreach (List<string> item in anagramsMap.Select(g => g.Value).ToList())
+        {
+            result.Add(item);
+        }
+
+        return result;
     }
 }
