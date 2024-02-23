@@ -1,41 +1,45 @@
-﻿namespace LeetCodeProblems
+﻿namespace LeetCodeProblems;
+
+public static class Problem5_TopKFrequentElements
 {
-    public static class Problem5_TopKFrequentElements
+    public static int[] TopKFrequent(int[] nums, int k)
     {
-        public static int[] TopKFrequent(int[] nums, int k)
+        Dictionary<int, int> numsCount = [];
+        foreach (var num in nums)
         {
-            if (nums.Length == 1 && k == 1)
+            if (numsCount.TryGetValue(num, out int frequency))
             {
-                return [nums[0]];
+                ++numsCount[num];
             }
-
-            Dictionary<int, int> numsFrequency = [];
-            foreach (int num in nums)
+            else
             {
-                if (numsFrequency.TryGetValue(num, out int frequency))
-                {
-                    ++numsFrequency[num];
-                }
-                else
-                {
-                    numsFrequency.Add(num, 1);
-                }
+                numsCount.Add(num, 1);
             }
-
-            List<(int, int)> numsFrequencyTopK = numsFrequency.OrderByDescending(x => x.Value)
-                                                              .Take(k)
-                                                              .Select(kvp => (kvp.Key, kvp.Value))
-                                                              .ToList();
-
-            int[] numsTopK = new int[k];
-            int index = 0;
-            foreach ((int, int) topK in numsFrequencyTopK)
-            {
-                numsTopK[index] = topK.Item1;
-                ++index;
-            }
-
-            return numsTopK;
         }
+
+        List<List<int>> numsFrequency = new(nums.Length + 1);
+        for (int i = 0; i < nums.Length + 1; ++i)
+        {
+            numsFrequency.Add([]);
+        }
+
+        foreach (var numCount in numsCount)
+        {
+            numsFrequency[numCount.Value].Add(numCount.Key);
+        }
+
+        List<int> result = [];
+        for (int i = numsFrequency.Count - 1; i > 0; --i)
+        {
+            for (int j = 0; j < numsFrequency[i].Count; ++j)
+            {
+                result.Add(numsFrequency[i][j]);
+                if (result.Count == k)
+                {
+                    return [.. result];
+                }
+            }
+        }
+        return [];
     }
 }
