@@ -1,5 +1,5 @@
 ﻿namespace LeetCodeProblems;
-public class Problem8_StringEncodeAndDecode
+public class Problem008_StringEncodeAndDecode
 {
     public static string Encode(IList<string> strs)
     {

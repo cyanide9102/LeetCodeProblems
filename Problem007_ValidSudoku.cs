@@ -1,6 +1,6 @@
 ﻿namespace LeetCodeProblems;
 
-public static class Problem7_ValidSudoku
+public static class Problem007_ValidSudoku
 {
     public static bool IsValidSudoku(char[][] board)
     {

@@ -1,6 +1,6 @@
 ﻿namespace LeetCodeProblems;
 
-public static class Problem6_ProductOfArrayExceptSelf
+public static class Problem006_ProductOfArrayExceptSelf
 {
     public static int[] ProductExceptSelf(int[] nums)
     {

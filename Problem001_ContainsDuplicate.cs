@@ -1,6 +1,6 @@
 ﻿namespace LeetCodeProblems;
 
-public static class Problem1_ContainsDuplicate
+public static class Problem001_ContainsDuplicate
 {
     public static bool ContainsDuplicate(int[] nums)
     {

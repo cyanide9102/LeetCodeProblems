@@ -1,6 +1,6 @@
 ﻿namespace LeetCodeProblems;
 
-public static class Problem5_TopKFrequentElements
+public static class Problem005_TopKFrequentElements
 {
     public static int[] TopKFrequent(int[] nums, int k)
     {

@@ -1,6 +1,6 @@
 ﻿namespace LeetCodeProblems;
 
-public static class Problem3_TwoSum
+public static class Problem003_TwoSum
 {
     public static int[] TwoSum(int[] nums, int target)
     {

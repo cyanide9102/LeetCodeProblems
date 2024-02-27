@@ -1,5 +1,5 @@
 ﻿namespace LeetCodeProblems;
-public static class Problem9_LongestConsecutiveSequence
+public static class Problem009_LongestConsecutiveSequence
 {
     public static int LongestConsecutive(int[] nums)
     {

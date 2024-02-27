@@ -2,7 +2,7 @@
 
 namespace LeetCodeProblems;
 
-public static class Problem4_GroupAnagrams
+public static class Problem004_GroupAnagrams
 {
     public static IList<IList<string>> GroupAnagrams(string[] strs)
     {

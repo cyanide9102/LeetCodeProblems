@@ -1,6 +1,6 @@
 ﻿namespace LeetCodeProblems;
 
-public static class Problem2_ValidAnagram
+public static class Problem002_ValidAnagram
 {
     public static bool IsAnagram(string s, string t)
     {
