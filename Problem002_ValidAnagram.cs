@@ -36,6 +36,10 @@ public static class Problem002_ValidAnagram
                     characterMap[t[i]] = count;
                 }
             }
+            else
+            {
+                break;
+            }
         }
 
         if (characterMap.Count != 0)
